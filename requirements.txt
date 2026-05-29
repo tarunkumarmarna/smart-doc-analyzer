@@ -1,0 +1,31 @@
+# requirements.txt — all dependencies with pinned versions
+# WHY pin versions: unpinned deps can break when libraries update
+# Test with these exact versions before deploying
+
+# Deep Learning + Transformers
+torch==2.1.0
+transformers==4.36.0
+sentence-transformers==2.2.2
+
+# PDF extraction
+PyPDF2==3.0.1
+
+# API
+fastapi==0.104.0
+uvicorn==0.24.0
+pydantic==2.4.0
+python-multipart==0.0.6  # required for FastAPI file uploads
+
+# UI
+streamlit==1.28.0
+plotly==5.17.0
+requests==2.31.0
+
+# ML utilities
+numpy==1.26.0
+scikit-learn==1.3.2
+mlflow==2.8.0
+
+# Testing
+pytest==7.4.0
+httpx==0.25.0  # required by FastAPI TestClient

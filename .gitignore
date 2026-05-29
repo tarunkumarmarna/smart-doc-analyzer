@@ -1,0 +1,36 @@
+# .gitignore — files never committed to GitHub
+
+# Model weights — 250MB+, stored on HuggingFace Hub instead
+models/
+
+# MLflow experiment tracking logs — large, local only
+mlruns/
+
+# Python cache files — auto-generated, never commit
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Environment variables — secrets never in git
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# IDE settings
+.vscode/
+.idea/
+
+# Logs
+*.log

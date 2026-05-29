@@ -1,0 +1,34 @@
+# .dockerignore — files NOT copied into Docker image
+# WHY: keeps image lean, excludes large files and dev-only content
+
+# model weights — 250MB+, loaded from HuggingFace Hub at runtime
+models/
+
+# MLflow experiment logs — not needed in production
+mlruns/
+
+# Jupyter notebooks — training only, not in production
+notebooks/
+
+# Python cache — regenerated automatically
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# git history — not needed in image
+.git/
+.gitignore
+
+# environment files — secrets never in image
+.env
+.env.example
+
+# assets — README images, not needed in API container
+assets/
+
+# Streamlit UI — deployed separately on Streamlit Cloud
+app/
+
+# tests — not needed in production container
+tests/
