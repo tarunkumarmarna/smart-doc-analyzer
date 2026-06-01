@@ -6,6 +6,7 @@
 torch==2.2.0
 transformers==4.36.0
 sentence-transformers==2.7.0
+huggingface_hub==0.20.3
 
 # PDF extraction
 PyPDF2==3.0.1

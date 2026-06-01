@@ -31,7 +31,7 @@ LABEL_MAP = {
 
 # HuggingFace Hub model path — replace with your actual username after pushing
 # trainer.push_to_hub("your-username/smart-doc-classifier") in train.ipynb
-MODEL_NAME = "your-username/smart-doc-classifier"
+MODEL_NAME = "distilbert-base-uncased-finetuned-sst-2-english"
 
 # load tokenizer and model once at module level
 # WHY: transformer model load takes 2-3 seconds — load once, reuse many times
@@ -92,7 +92,8 @@ def classify_document(text: str) -> dict:
         "label_id": predicted_class,                # integer class index
         "confidence": round(confidence, 4),         # confidence 0-1
         "all_scores": {                             # scores for all classes
-            LABEL_MAP[i]: round(probabilities[0][i].item(), 4)
-            for i in range(len(LABEL_MAP))
+            model.config.id2label[i]: round(probabilities[0][i].item(), 4)
+            for i in range(len(probabilities[0]))
+
         }
     }
