@@ -18,13 +18,17 @@ from transformers import pipeline  # HuggingFace high-level pipeline API
 
 # load summarization pipeline once at module level
 # WHY once: same reason as NER — model load is expensive, reuse is cheap
-summarizer_model = pipeline(
-    "summarization",
-    model="sshleifer/distilbart-cnn-12-6"
-)
+summarizer_model = None
 
 
 def summarize_text(text: str) -> str:
+    global summarizer_model
+
+    if summarizer_model is None:
+       summarizer_model = pipeline(
+        "summarization",
+        model="sshleifer/distilbart-cnn-12-6"
+    )
     """
     Generate an abstractive summary of the input text.
     Returns a clean summary string.

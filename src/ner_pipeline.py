@@ -15,11 +15,7 @@ from collections import defaultdict  # for grouping entities by type
 # loading once at import time means all requests after that are fast
 # aggregation_strategy="simple" merges subword tokens back into full words
 # e.g. "Micro", "##soft" → "Microsoft" with one label
-ner_model = pipeline(
-    "ner",
-    model="dslim/bert-base-NER",
-    aggregation_strategy="simple"
-)
+ner_model = None
 
 
 def extract_entities(text: str) -> dict[str, list[str]]:
@@ -69,6 +65,14 @@ def extract_entities(text: str) -> dict[str, list[str]]:
 
 
 def extract_entities_from_chunks(chunks: list[str]) -> dict[str, list[str]]:
+    global ner_model
+
+    if ner_model is None:
+       ner_model = pipeline(
+        "ner",
+        model="dslim/bert-base-NER",
+        aggregation_strategy="simple"
+       )
     """
     Run NER across all chunks and merge results.
     WHY: NER model has a token limit (~512 tokens).

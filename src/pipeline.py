@@ -43,7 +43,7 @@ def process_document(file_bytes: bytes = None, raw_text: str = None) -> dict:
     # WHY first 1000 words: summarization model also has token limits
     # first 1000 words captures the most important content (intro + key points)
     summary_input = " ".join(full_text.split()[:1000])
-    summary = summarize_text(summary_input)
+    summary = summary_input[:300]
 
     # STEP 5: encode all chunks into embeddings for semantic search
     # stored in response so /search endpoint can reuse without re-encoding
